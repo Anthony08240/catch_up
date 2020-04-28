@@ -39,7 +39,16 @@
 
     <!-- session start -->
 
-    <?php session_start();?>
+    <?php session_start();
+
+    // connexion bdd 
+
+    require_once('traitement/connectBDD.php');
+
+    $connexion = new Database('localhost', 'technews', 'root', '');
+    $bdd = $connexion->PDOConnexion();
+    ?>
+
 
     <div id="main-wrapper">
         <!-- Page Preloader -->
@@ -93,7 +102,7 @@
                                             <?php
                             if (isset($_SESSION['nom']) AND isset($_SESSION['pass'])){
                             ?>
-                                            <li>Bonjours<strong>&nbsp;<?php echo $_SESSION['nom'];  ?>&nbsp;</strong>
+                                            <li>Bonjours<strong>&nbsp;<?php echo $_SESSION['nom']; ?>&nbsp;</strong>
                                             </li>
                                             <li><a href="traitement/logout.php">déconnexion</a></li>
                                             <?php } 
@@ -218,7 +227,12 @@
                     <!-- .container -->
                 </section>
                 <!-- header_section_wrapper -->
+                <?php
+                                         $req = $bdd->prepare(" SELECT * FROM article");
+                                         $req ->execute();
 
+                                         while( $donnees = $req->fetch() ) { ?>
+                                         
                 <section id="feature_news_section" class="feature_news_section">
                     <div class="container">
                         <div class="row">
@@ -226,27 +240,26 @@
                                 <div class="feature_article_wrapper">
                                     <div class="feature_article_img">
                                         <img class="img-responsive top_static_article_img"
-                                            src="assets/img/feature-top.jpg" alt="feature-top">
+                                            src="<?= $donnees['image_article'];?>" alt="feature-top">
                                     </div>
-                                    <!-- feature_article_img -->
+                                    <!-- premier article -->
+
+                                    
 
                                     <div class="feature_article_inner">
-                                        <div class="tag_lg red"><a href="category.php">Hot News</a></div>
+                                        <div class="tag_lg red"><a href="category.php">New</a></div>
                                         <div class="feature_article_title">
-                                            <h1><a href="single.php" target="_self">Chevrolet car-saving technology
-                                                    delivers </a></h1>
+                                            <h1><a href="single.php" target="_self"><?= $donnees['titre'];?></a></h1>
                                         </div>
+
                                         <!-- feature_article_title -->
 
-                                        <div class="feature_article_date"><a href="#" target="_self">Stive Clark</a>,<a
-                                                href="#" target="_self">Aug
-                                                4, 2015</a></div>
+                                        <div class="feature_article_date"><a href="#" target="_self"><?= $donnees['auteur'];?></a>,<a
+                                                href="#" target="_self"> <?= $donnees['date_article'];?></a></div>
                                         <!-- feature_article_date -->
 
                                         <div class="feature_article_content">
-                                            In a move to address mounting concerns about security on Android, Google and
-                                            Samsung are
-                                            now issuing.
+                                        <?= $donnees['contenu_rapide'];?>
                                         </div>
                                         <!-- feature_article_content -->
 
@@ -263,6 +276,7 @@
                                 <!-- feature_article_wrapper -->
 
                             </div>
+                            <?php } ?>
                             <!-- col-md-7 -->
 
                             <div class="col-md-5">
