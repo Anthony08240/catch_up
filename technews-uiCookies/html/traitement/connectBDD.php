@@ -17,7 +17,7 @@
 
       // Fonction permettant de se connecter
       public function PDOConnexion() {
-        $bdd = new PDO('mysql:host='.$this->_host.'; technews'.$this->_dbname, $this->_username, $this->_password);
+        $bdd = new PDO('mysql:host='.$this->_host.'; dbname='.$this->_dbname, $this->_username, $this->_password);
           $bdd ->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
           $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
           // Faire un return de la BDD ou non en fonction de ou on utilise la connexion

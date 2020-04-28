@@ -2,42 +2,29 @@
 
 class User {
 
-protected $_id_user;
+
 protected $_nom;
-protected $_email;
+
 protected $_pass;
-protected $_id_typeUser;
+
     
-    public function __construct( $_id_user, $_nom, $_email, $_pass, $_id_typeUser ) {   
-      $this->_id_user = $_id_user;
+    public function __construct( $_nom, $_pass) {   
       $this->_nom = $_nom;
-      $this->_email = $_email;
       $this->_pass = $_pass;
-      $this->_id_typeUser = $_id_typeUser;
     }
-
-
-    public function getidUser(){
-      return $this->_id_user;
-    }
+   
     public function getNom(){
       return $this->_nom;
-    }
-    public function getEmail(){
-      return $this->_email;
     }
     public function getPass(){
       return $this->_pass;
     }
-    public function getidTypeUser(){
-      return $this->_id_typeUser;
-    }
 
     public function connect($bdd){
-        $req = $bdd->prepare("SELECT nom, pass FROM user WHERE nom = :nom AND pass = :pass");
-    $req->execute(array(
-            'nom' => $this->_nom,
-            'pass' => $this->_pass
+        $req = $bdd->prepare("SELECT * FROM user WHERE nom = :nom AND pass = :pass");
+        $req->execute(array(
+                ':nom' => $this->_nom,
+                ':pass' => $this->_pass
     ));
 
     $count = $req->rowCount();
@@ -46,13 +33,61 @@ protected $_id_typeUser;
         session_start();
         $_SESSION['nom'] = $this->_nom;
         $_SESSION['pass'] = $this->_pass;
-        header("location:index.php");
+        header("location:../index.php");
     }
     else
     {
      //Mauvais identifiant ou mauvais tout cours
-     echo"movais mot de pass ou nom !!!";
+     echo "movais mot de pass ou nom !!!" ;
     }
   }
+}
+  // inscription
+
+  class User_insc {
+    
+  protected $_nom;
+  protected $_email;
+  protected $_pass;
+      
+      public function __construct($_nom, $_email, $_pass){   
+        $this->_nom = $_nom;
+        $this->_email = $_email;
+        $this->_pass = $_pass;
+      }
+
+
+      public function getNom(){
+        return $this->_nom;
+      }
+      public function getEmail(){
+        return $this->_email;
+      }
+      public function getPass(){
+        return $this->_pass;
+      }
+      public function inscription($bdd){
+          $sql = $bdd->prepare("INSERT INTO user ( nom, email, pass, id_typeUser )
+                          VALUES ( :nom, :email, :pass, 3 )");
+  
+    $sql->execute(array(
+        ":nom" => $this->_nom,
+        ":email" => $this->_email,
+        ":pass" => $this->_pass
+    ));
+    
+  
+    if($this->_email == $this->_email)
+    {
+      echo"vous etes bien inscrit !! <br><br>";
+      echo "<a href='../index.php'> Cliquer ici pour revenir en arrière </a>";
+    }
+    else
+    {
+     //Mauvais identifiant ou mauvais tout cours
+     echo"errueur dans l'inscription veuiller réessayer !! <br><br>";
+     echo "<a href='../sign_in_up/sign_up.php'> Cliquer ici pour revenir en arrière </a>";
+    }
+    }
 }
 ?>
