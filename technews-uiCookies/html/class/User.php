@@ -4,7 +4,6 @@ class User {
 
 
 protected $_nom;
-
 protected $_pass;
 
     
@@ -12,7 +11,7 @@ protected $_pass;
       $this->_nom = $_nom;
       $this->_pass = $_pass;
     }
-   
+
     public function getNom(){
       return $this->_nom;
     }
@@ -21,10 +20,10 @@ protected $_pass;
     }
 
     public function connect($bdd){
-        $req = $bdd->prepare("SELECT * FROM user WHERE nom = :nom AND pass = :pass");
+        $req = $bdd->prepare("SELECT nom, pass FROM user WHERE nom = :nom AND pass = :pass");
         $req->execute(array(
                 ':nom' => $this->_nom,
-                ':pass' => $this->_pass
+                ':pass' => $this->_pass,
     ));
 
     $count = $req->rowCount();
@@ -33,6 +32,7 @@ protected $_pass;
         session_start();
         $_SESSION['nom'] = $this->_nom;
         $_SESSION['pass'] = $this->_pass;
+        $_SESSION['id_typeUser'] = $id_typeUser;
         header("location:../index.php");
     }
     else
@@ -79,8 +79,11 @@ protected $_pass;
   
     if($this->_email == $this->_email)
     {
-      echo"vous etes bien inscrit !! <br><br>";
-      echo "<a href='../index.php'> Cliquer ici pour revenir en arrière </a>";
+      session_start();
+        $_SESSION['nom'] = $this->_nom;
+        $_SESSION['pass'] = $this->_pass;
+        $_SESSION['id_typeUser'] = $id_typeUser;
+      header("location:../index.php");
     }
     else
     {

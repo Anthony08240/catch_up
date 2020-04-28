@@ -36,6 +36,12 @@
 </head>
 
 <body id="page-top" data-spy="scroll" data-target=".navbar">
+
+    <!-- session start -->
+
+    <?php session_start();?>
+
+
     <div id="main-wrapper">
         <!-- Page Preloader -->
         <div id="preloader">
@@ -85,8 +91,18 @@
                                 <div class="col-md-4">
                                     <div class="right_section">
                                         <ul class="nav navbar-nav">
-                                            <li><a href="#">Login</a></li>
-                                            <li><a href="#">Register</a></li>
+                                            <?php
+                            if (isset($_SESSION['nom']) AND isset($_SESSION['pass'])){
+                            ?>
+                                            <li>Bonjours<strong>&nbsp;<?php echo $_SESSION['nom'];  ?>&nbsp;</strong>
+                                            </li>
+                                            <li><a href="traitement/logout.php">déconnexion</a></li>
+                                            <?php } 
+                            else {
+	                        echo'<li><a href="sign_in_up/sign_in.php">Login</a></li>
+                            <li><a href="sign_in_up/sign_up.php">Register</a></li>';
+                            } 
+                            ?>
                                             <li class="dropdown lang">
                                                 <button class="btn btn-default dropdown-toggle" type="button"
                                                     id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
@@ -96,7 +112,7 @@
                                                 </ul>
                                             </li>
                                         </ul>
-                                        <!-- Language Section -->
+                                        <!-- guage Section -->
 
                                         <ul class="nav-cta hidden-xs">
                                             <li class="dropdown"><a href="#" data-toggle="dropdown"
