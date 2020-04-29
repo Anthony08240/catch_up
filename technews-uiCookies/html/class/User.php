@@ -20,7 +20,7 @@ protected $_pass;
     }
 
     public function connect($bdd){
-        $req = $bdd->prepare("SELECT nom, pass FROM user WHERE nom = :nom AND pass = :pass");
+        $req = $bdd->prepare("SELECT * FROM user WHERE nom = :nom AND pass = :pass");
         $req->execute(array(
                 ':nom' => $this->_nom,
                 ':pass' => $this->_pass,
@@ -32,7 +32,7 @@ protected $_pass;
         session_start();
         $_SESSION['nom'] = $this->_nom;
         $_SESSION['pass'] = $this->_pass;
-        $_SESSION['id_typeUser'] = $id_typeUser;
+        
         header("location:../index.php");
     }
     else
@@ -82,7 +82,7 @@ protected $_pass;
       session_start();
         $_SESSION['nom'] = $this->_nom;
         $_SESSION['pass'] = $this->_pass;
-        $_SESSION['id_typeUser'] = $id_typeUser;
+
       header("location:../index.php");
     }
     else

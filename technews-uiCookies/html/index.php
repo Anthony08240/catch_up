@@ -105,6 +105,7 @@
                                             <li>Bonjours<strong>&nbsp;<?php echo $_SESSION['nom']; ?>&nbsp;</strong>
                                             </li>
                                             <li><a href="traitement/logout.php">déconnexion</a></li>
+                                            <li><a href="crud/crud.php">crud</a></li>
                                             <?php } 
                             else {
 	                        echo'<li><a href="sign_in_up/sign_in.php">Login</a></li>
