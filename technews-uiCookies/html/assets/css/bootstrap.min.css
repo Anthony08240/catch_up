@@ -5621,7 +5621,7 @@ a.thumbnail.active, a.thumbnail:focus, a.thumbnail:hover {
 }
 
 .media {
-    margin-top: 15px
+    margin-top: 15px;
 }
 
 .media:first-child {
@@ -5638,6 +5638,7 @@ a.thumbnail.active, a.thumbnail:focus, a.thumbnail:hover {
 }
 
 .media-object {
+    width: 15em;
     display: block
 }
 

@@ -228,7 +228,7 @@
                 </section>
                 <!-- header_section_wrapper -->
                 <?php
-                $req = $bdd->prepare(" SELECT * FROM article");
+                $req = $bdd->prepare(" SELECT * FROM article WHERE id_Article ='".$_GET['id']."'");
                 $req ->execute();
 
                 while( $donnees = $req->fetch() ) { ?>
