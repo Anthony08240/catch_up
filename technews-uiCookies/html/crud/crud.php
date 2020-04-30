@@ -12,7 +12,7 @@ $connexion = new Database('localhost', 'technews', 'root', '');
 
 </head>
 <body>
-<a href="../index.php">Retour</a>
+<a href="../index.php">Retour</a> <a href="crud_user.php">modifier utilisateur</a>
   <div class="container">
     <form id="contact">
       <h3><center>affichage des articles </center></h3>

@@ -7,9 +7,9 @@
 
 
 
-    $req = $bdd->prepare(" DELETE FROM article WHERE id_Article ='".$_GET['id']."'");
+    $req = $bdd->prepare(" DELETE FROM user WHERE id_user ='".$_GET['id']."'");
     $req ->execute();
     
-    header("location:crud.php");
+    header("location:crud_user.php");
 
 ?>

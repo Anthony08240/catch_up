@@ -20,7 +20,7 @@ $connexion = new Database('localhost', 'technews', 'root', '');
            
   $sql->execute([$titre,$auteur,$contenu,$contenu_rapide,$date_article,$image_article]);
 
-echo 'Modification effectué' 
+  header("location:crud.php");
 
 ?>
 <br><br>

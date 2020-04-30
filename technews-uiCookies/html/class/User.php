@@ -7,7 +7,7 @@ protected $_nom;
 protected $_pass;
 
     
-    public function __construct( $_nom, $_pass) {   
+    public function __construct( $_nom, $_pass ) {   
       $this->_nom = $_nom;
       $this->_pass = $_pass;
     }
