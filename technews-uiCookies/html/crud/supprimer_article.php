@@ -8,7 +8,7 @@
 
 
     $req = $bdd->prepare(" DELETE FROM article WHERE id_Article ='".$_GET['id']."'");
-    $req ->execute(array($_POST['id_Article']));
+    $req ->execute();
     
     echo 'Article Supprimer';
 

@@ -12,6 +12,7 @@ $connexion = new Database('localhost', 'technews', 'root', '');
 
 </head>
 <body>
+<a href="../index.php">Retour</a>
   <div class="container">
     <form id="contact">
       <h3><center>affichage des articles </center></h3>
@@ -44,7 +45,7 @@ $connexion = new Database('localhost', 'technews', 'root', '');
               <td><?= $donnees['contenu']; ?></td>
               <td><?= $donnees['contenu_rapide']; ?></td>
               <td><?= $donnees['date_article']; ?></td>
-              <td><button><a href="*" style="color:black;">Modifier</a></button></td>
+              <td><button><a href="form_modifier_article.php?id=<?php echo $donnees['id_Article'];?>" style="color:black;">Modifier</a></button></td>
               <td><button><a href="supprimer_article.php?id=<?php echo $donnees['id_Article'];?>" style="color:black;">Supprimer</a></button></td>
             </tr>
 

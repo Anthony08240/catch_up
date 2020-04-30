@@ -67,25 +67,15 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="left_section">
-                                        <span class="date">
-                                            Sunday .
-                                        </span>
-                                        <!-- Date -->
-                                        <span class="time">
-                                            09 August . 2016
-                                        </span>
-                                        <!-- Time -->
-                                        <div class="social">
-                                            <a class="icons-sm fb-ic"><i class="fa fa-facebook"></i></a>
-                                            <!--Twitter-->
-                                            <a class="icons-sm tw-ic"><i class="fa fa-twitter"></i></a>
-                                            <!--Google +-->
-                                            <a class="icons-sm inst-ic"><i class="fa fa-instagram"> </i></a>
-                                            <!--Linkedin-->
-                                            <a class="icons-sm tmb-ic"><i class="fa fa-tumblr"> </i></a>
-                                            <!--Pinterest-->
-                                            <a class="icons-sm rss-ic"><i class="fa fa-rss"> </i></a>
-                                        </div>
+                                    <?php
+                            if (isset($_SESSION['nom']) AND isset($_SESSION['pass'])){
+                            ?>
+
+                                            <p>Bonjours<strong>&nbsp;<?php echo $_SESSION['nom']; ?>&nbsp;</strong>
+                                            </p></center>
+                                            <?php } 
+                            
+                            ?>
                                         <!-- Top Social Section -->
                                     </div>
                                     <!-- Left Header Section -->
@@ -102,23 +92,16 @@
                                             <?php
                             if (isset($_SESSION['nom']) AND isset($_SESSION['pass'])){
                             ?>
-                                            <li>Bonjours<strong>&nbsp;<?php echo $_SESSION['nom'];  ?>&nbsp;</strong>
-                                            </li>
                                             <li><a href="traitement/logout.php">déconnexion</a></li>
+                                            <li><a href="crud/crud.php">crud</a></li>
+                                            <li><a href="crud/form_ajouter_article.php">ajouté un article</a></li>
                                             <?php } 
                             else {
 	                        echo'<li><a href="sign_in_up/sign_in.php">Login</a></li>
                             <li><a href="sign_in_up/sign_up.php">Register</a></li>';
                             } 
                             ?>
-                                            <li class="dropdown lang">
-                                                <button class="btn btn-default dropdown-toggle" type="button"
-                                                    id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
-                                                    aria-expanded="true">En <i class="fa fa-angle-down"></i></button>
-                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                                    <li><a href="#">Bn</a></li>
-                                                </ul>
-                                            </li>
+                                            
                                         </ul>
                                         <!-- Language Section -->
 

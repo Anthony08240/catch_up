@@ -12,15 +12,23 @@ $connexion = new Database('localhost', 'technews', 'root', '');
   $contenu_rapide = !empty($_POST['contenu_rapide']) ? $_POST['contenu_rapide'] : NULL;
   $date_article = !empty($_POST['date_article']) ? $_POST['date_article'] : NULL;
   $image_article = !empty($_POST['image_article']) ? $_POST['image_article'] : NULL;
+  $id_user = !empty($_POST['id_user']) ? $_POST['id_user'] : NULL;
 
 
-  $sql = $bdd->prepare ("UPDATE article
-           SET titre = ?, auteur = ?, contenu = ?, contenu_rapide = ?, date_article = ?,image_article = ?
-           WHERE id_Article ='".$_GET['id']."' ");
-           
-  $sql->execute([$titre,$auteur,$contenu,$contenu_rapide,$date_article,$image_article]);
+  $sql = $bdd->prepare("INSERT INTO article ( titre, auteur, contenu, contenu_rapide, date_article, image_article, id_user )
+  VALUES ( :titre, :auteur, :contenu, :contenu_rapide, :date_article, :image_article, :id_user )");
 
-echo 'Modification effectué' 
+$sql->execute(array(
+":titre" => $titre,
+":auteur" => $auteur,
+":contenu" => $contenu,
+":contenu_rapide" => $contenu_rapide,
+":date_article" => $date_article,
+":image_article" => $image_article,
+":id_user" => $id_user,
+));
+
+echo 'Ajout effectué' 
 
 ?>
 <br><br>
