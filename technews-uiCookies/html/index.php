@@ -1,3 +1,6 @@
+<?php session_start(); ?>
+
+
 <!DOCTYPE html>
 <html>
 
@@ -39,7 +42,7 @@
 
     <!-- session start -->
 
-    <?php session_start();
+    <?php
 
     // connexion bdd 
 
@@ -70,7 +73,7 @@
                                        
                                         <!-- Time -->
                                         <?php
-                            if (isset($_SESSION['nom']) AND isset($_SESSION['pass'])){
+                            if (isset($_SESSION['nom'])){
                             ?>
 
                                             <p>Bonjours<strong>&nbsp;<?php echo $_SESSION['nom']; ?>&nbsp;</strong>
@@ -92,17 +95,18 @@
                                     <div class="right_section">
                                         <ul class="nav navbar-nav">
                                             <?php
-                            if (isset($_SESSION['nom']) AND isset($_SESSION['pass'])){
+                            if (isset($_SESSION['nom'])){
                             ?>
                                             <li><a href="traitement/logout.php">déconnexion</a></li>
                                             <li><a href="crud/crud.php">crud</a></li>
                                             <li><a href="crud/form_ajouter_article.php">ajouté un article</a></li>
                                             <?php } 
-                            else {
-	                        echo'<li><a href="sign_in_up/sign_in.php">Login</a></li>
-                            <li><a href="sign_in_up/sign_up.php">Register</a></li>';
+                            else { ?>
+	                        <li><a href="sign_in_up/sign_in.php">Login</a></li>
+                            <li><a href="sign_in_up/sign_up.php">Register</a></li>
+                        <?php
                             } 
-                            ?>
+                        ?>
                                             
                                         </ul>
                                         <!-- Language Section -->

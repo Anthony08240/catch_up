@@ -27,11 +27,15 @@ protected $_pass;
     ));
 
     $count = $req->rowCount();
+
     if($count > 0)
     {
+
+      $donnees = $req->fetch();
+
         session_start();
         $_SESSION['nom'] = $this->_nom;
-        $_SESSION['pass'] = $this->_pass;
+        $_SESSION['id_typeUser'] = $donnees['id_typeUser'];
         
         header("location:../index.php");
     }
